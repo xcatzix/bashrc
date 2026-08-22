@@ -10918,33 +10918,5 @@ HELPER
 # wRitenPaTHtofilE
 # }
 
-# . "$HOME/.turso/env"
-
-# Starship 初始化
-# eval "$(starship init bash)"
-
-# ble.sh 初始化（根据安装方式二选一）
-# [[ $- == *i* ]] && source ~/.local/share/blesh/ble.sh --attach=none  # 源码安装
-# [[ $- == *i* ]] && source /usr/share/blesh/ble.sh --attach=none # AUR 安装
-# ble.sh 附加（必须放在文件末尾）
-# [[ ${BLE_VERSION-} ]] && ble-attach
 
 # krunner启动快捷方式：alt+space
-
-# TENCENT_NEWS_APIKEY aichat ...
-export TENCENT_NEWS_APIKEY="7021e660-e579-484d-a7fb-e9a069740ea9"
-function aIchat() {
-  curl -X POST 'https://tokenhub.tencentmaas.com/v1/responses' \
-    -H 'Authorization: Bearer sk-lk9GTT6pv2xpg31heKmUV3YCtTA2pS5oUV81ztx59GrE4Qxe' \
-    -H 'Content-Type: application/json' \
-    -d '{
-    "model": "hy3-preview",
-    "instructions": "You are a helpful assistant.",
-    "input": "在archlinux上，如何编写krunner插件使用stardict",
-    "stream": false
-  }'
-
-}
-# claude code...
-# export ANTHROPIC_BASE_URL="https://new.woaitoken.com/v1"
-# export ANTHROPIC_API_KEY="sk-irpbqWhJz1xhS1A3IMX6RecAioVKAhXZZFrEB2hkVYWKw3KR"
