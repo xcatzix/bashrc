@@ -843,7 +843,7 @@ function t() {
   # [[ ! -f "${InsErtedcOntEnTs}" ]] && sudo touch "${InsErtedcOntEnTs}"
   # local InsErtedcOntEnTs="${PiPfold}"/.collect.swp
   # cHeckAbriDgemEnt
-  # todo.txt文件转移
+  # todo.txt文件zhuan yi
   #  if [[ ! -f "${abritxt}" && -f "${hO}"/.collect.swp
   # PiPfold="${TeMfold}"/.PipE
   # dictDB="${TeMfold}"/stardict.db
@@ -8599,7 +8599,7 @@ function pAcup() {
     sEcUriTypoLicY
   fi
   #  if [[ -z "$1" || "$1" == '-' ]]; then
-  #   echo -e 'Using: \e[32mpacup -[SmUIRdh] args\e[0m...'
+  #   echo -e 'Using: \e[32mpAcup -[SmUIRdh] args\e[0m...'
   #   return 1
   # fi
   # 选项规范检查
@@ -8609,7 +8609,7 @@ function pAcup() {
   if [[ "${iNpUtoPtcAche}" == '-' || "${iNpUtoPtcAche}" == '--' ]]; then
     echo 'Description: Using to mount /efi and /boot ...'
     echo '             System update, applicaion install or remove and so on...'
-    echo -e 'Using: \e[32mpacup -[SmUIRdh] ( |arg[s])\e[0m...'
+    echo -e 'Using: \e[32mpAcup -[SmUIRdh] ( |arg[s])\e[0m...'
     echo -e 'Using \e[33mpAcman -h\e[0m for detail...'
     return 1
   fi
@@ -8619,7 +8619,7 @@ function pAcup() {
   if [[ "${opttEst}" != '-' || -z "${iNpUtoPtcAche}" ]]; then
     echo 'Description: Using to mount /efi and /boot ...'
     echo '             System update, applicaion install or remove and so on...'
-    echo -e 'Using: \e[32mpacup -[SmUIRdh] ( |arg[s])\e[0m...'
+    echo -e 'Using: \e[32mpAcup -[SmUIRdh] ( |arg[s])\e[0m...'
     echo -e 'Using \e[33mpAcman -h\e[0m for detail...'
     return 1
   fi
@@ -8636,21 +8636,21 @@ Description: Using to mount /efi and /boot ...
              System update, applicaion install or remove and so on...
 ----------------------------------------------------------------------
 -h      Display those help information
--I      Install a package... [Using: pacup -I app(s) | pacup -I /path/to/your/app(s)]...
--U      Upgrade the system...[Using: pacup -U]
--R      Uninstall the package...[Using: pacup -R app]
--m      Mount boot and efi...[Using: pacup -m]
--d      Umount boot and efi...[Using: pacup -d]
--S      search package...[Using: pacup -S app]
+-I      Install a package... [Using: pAcup -I app(s) | pAcup -I /path/to/your/app(s)]...
+-U      Upgrade the system...[Using: pAcup -U]
+-R      Uninstall the package...[Using: pAcup -R app]
+-m      Mount boot and efi...[Using: pAcup -m]
+-d      Umount boot and efi...[Using: pAcup -d]
+-S      search package...[Using: pAcup -S app]
 HELPER
       return 1
     fi
     if [[ -z "$2" ]]; then
       if [[ "${countOpt}" =~ -[SIR] ]]; then
         cat <<-HELPER
--I      Install a package... [Using: pacup -I app(s) | pacup -I /path/to/your/app(s)]...
--R      Uninstall the package...[Using: pacup -R app]
--S      Search package...[Using: pacup -S app]
+-I      Install a package... [Using: pAcup -I app(s) | pAcup -I /path/to/your/app(s)]...
+-R      Uninstall the package...[Using: pAcup -R app]
+-S      Search package...[Using: pAcup -S app]
 HELPER
         return 1
       fi
@@ -8669,9 +8669,9 @@ HELPER
   #    if [[ "${iNpUtoPtcAche}" == '-S' || "${iNpUtoPtcAche}" == '-I' ]]; then
   #      if [[ -z "$2" ]]; then
   #        cat <<-HELPER
-  # -I      Install a package... [Using: pacup -I app app... | pacup -I /path/to/your/app(s)]...
-  # -R      Uninstall the package...[Using: pacup -R app]
-  # -S      Search package...[Using: pacup -S app]
+  # -I      Install a package... [Using: pAcup -I app app... | pAcup -I /path/to/your/app(s)]...
+  # -R      Uninstall the package...[Using: pAcup -R app]
+  # -S      Search package...[Using: pAcup -S app]
   # HELPER
   #        return 1
   #      fi
@@ -8679,9 +8679,9 @@ HELPER
   #    if [[ "${iNpUtoPtcAche}" == '-R' && -z "$2" ]]; then
   #  if [[ -z "$2" ]]; then
   #      cat <<-HELPER
-  # -I      Install a package... [Using: pacup -I app app... | pacup -I /path/to/your/app(s)]...
-  # -R      Uninstall the package...[Using: pacup -R app]
-  # -S      Search package...[Using: pacup -S app]
+  # -I      Install a package... [Using: pAcup -I app app... | pAcup -I /path/to/your/app(s)]...
+  # -R      Uninstall the package...[Using: pAcup -R app]
+  # -S      Search package...[Using: pAcup -S app]
   # HELPER
   #      return 1
   #    fi
@@ -8745,7 +8745,7 @@ HELPER
   #          lsblk -pf
   #          echo '---------------------------------------------'
   #          echo -e '----->\e[32mCheck\e[0m boot and efi<-----'
-  #          echo -e 'Typing \e[33mpacup m\e[0m to mount again if \e[32mnecessity\e[0m...'
+  #          echo -e 'Typing \e[33mpAcup m\e[0m to mount again if \e[32mnecessity\e[0m...'
   #          echo -n ' -->Here is m-->' && read -r typeM
   #    local typeM=m
   #    while [[ "${typeM}" == 'm' ]]; do
@@ -8796,7 +8796,7 @@ HELPER
   #        echo "--->${typeG}<---"
   # ==========================================================================================
   #    else
-  #      echo -e 'Using: [ \e[32mpacup -S app\e[0m ] to search application...'
+  #      echo -e 'Using: [ \e[32mpAcup -S app\e[0m ] to search application...'
   #      return 1
   #    fi
   #    ;;
@@ -8835,12 +8835,14 @@ HELPER
   #                         else
   #                    sudo pacman -S "${inst}"
   #                    echo '----------->[Installing Done]<-----------'
-  #                    echo -e -n 'Typing \033[32manother\033[0m application to install or type \033[32mG\033[0m to end...' | grep 'install'
+  #                    echo -e -n 'Typing \033[32manother\033[0m application to install or type \033[32mG\033[0m to 
+end...' | grep 'install'
   #                    echo -n ' -->Typing another application or "G" -->' && read -r typeG
   #                    while [[ "${typeG}" != G ]]; do
   #                        sudo pacman -S "${typeG}"
   #                        echo '------------>[Installing Done]<--------------'
-  #                       echo -e -n 'Typing \033[32manother\033[0m application to install or type \033[36mG\033[0m to end...' | grep 'install'
+  #                       echo -e -n 'Typing \033[32manother\033[0m application to install or type \033[36mG\033[0m to 
+end...' | grep 'install'
   #                       echo -n ' -->Typing another application or G -->' && read -r typeG
   #                    done
   #                    echo -n 'Typing K to umount boot and efi...' | grep 'K'
@@ -8866,7 +8868,7 @@ HELPER
   #       fi
   #    else
   #      echo '-----------------------------------------------'
-  #      echo '| pacmanSay: -->Thank you for using pacup<--  |'
+  #      echo '| pacmanSay: -->Thank you for using pAcup<--  |'
   #      echo '-----------------------------------------------'
   #    fi
   # else
@@ -8916,7 +8918,7 @@ HELPER
   #
   #        else
   #          echo "->${typeG}<- --> \e[32mNo\e[0m this package!"
-  #          echo -e '----->Thank you for using \e[32mpacup\e[0m<-----'
+  #          echo -e '----->Thank you for using \e[32mpAcup\e[0m<-----'
   #        fi
   #      else
   #        sudo pacman -Rscn ${typeG}
@@ -8980,7 +8982,7 @@ HELPER
       #          lsblk -pf
       #          echo '---------------------------------------------'
       #          echo -e '----->\e[32mCheck\e[0m boot and efi<-----'
-      #          echo -e 'Typing \e[33mpacup m\e[0m to mount again if \e[32mnecessity\e[0m...'
+      #          echo -e 'Typing \e[33mpAcup m\e[0m to mount again if \e[32mnecessity\e[0m...'
       #          echo -n ' -->Here is m-->' && read -r typeM
       local typeM=m
       echo -e -n 'Being ready to mount \e[32mboot\e[0m and \e[32mefi\e[0m...' | read -r
@@ -9022,7 +9024,7 @@ HELPER
         while [[ "${typeG}" != 'G' ]]; do
           # if [[ -z "${typeG}" ]]; then
           # echo '-----------------------------------------------'
-          # echo -e '| \e[32mpacmanSay:\e[0m -->Thank you for using pacup<--  |'
+          # echo -e '| \e[32mpacmanSay:\e[0m -->Thank you for using pAcup<--  |'
           # echo '-----------------------------------------------'
           # break
           # fi
@@ -9104,11 +9106,11 @@ HELPER
           fi
         done
         # echo '-----------------------------------------------'
-        # echo -e '| \e[32mpacmanSay:\e[0m -->Thank you for using pacup<--  |'
+        # echo -e '| \e[32mpacmanSay:\e[0m -->Thank you for using pAcup<--  |'
         # echo '-----------------------------------------------'
         # else
         # echo '---------------------------------------------'
-        # echo -e 'Using: [ \e[32mpacup -S app\e[0m ] to search application...'
+        # echo -e 'Using: [ \e[32mpAcup -S app\e[0m ] to search application...'
         # echo '---------------------------------------------'
         # return 1
       fi
@@ -9401,7 +9403,7 @@ typing \e[36m-S\e[0m to search -->\e[32m${typeSs}\e[0m<--..."
           # fi
           # if [[ "${typeG}" == 'G' ]]; then
           # echo '-----------------------------------------------'
-          # echo -e '| \e[32mpacmanSay:\e[0m -->Thank you for using pacup<--  |'
+          # echo -e '| \e[32mpacmanSay:\e[0m -->Thank you for using pAcup<--  |'
           # echo '-----------------------------------------------'
           # break
           # fi
@@ -9439,7 +9441,7 @@ typing \e[36m-S\e[0m to search -->\e[32m${typeSs}\e[0m<--..."
           # [[ "${typeGteMp}" == 'G' ]] && break
           # if [[ "${typeG}" == 'G' ]] && [[ -z "${typeG}" ]]; then
           # echo '-----------------------------------------------'
-          # echo -e '| \e[32mpacmanSay:\e[0m -->Thank you for using pacup<--  |'
+          # echo -e '| \e[32mpacmanSay:\e[0m -->Thank you for using pAcup<--  |'
           # echo '-----------------------------------------------'
           # break
           # fi
@@ -9598,7 +9600,7 @@ typing \e[36m-S\e[0m to search -->\e[32m${typeSs}\e[0m<--..."
       # ------------cvb------------------
       # if [[ "${typeG}" == 'G' ]]; then
       # echo '-----------------------------------------------'
-      # echo -e '| \e[32mpacmanSay:\e[0m -->Thank you for using pacup<--  |'
+      # echo -e '| \e[32mpacmanSay:\e[0m -->Thank you for using pAcup<--  |'
       # echo '-----------------------------------------------'
       # break
       # fi
@@ -9641,7 +9643,7 @@ typing \e[36m-S\e[0m to search -->\e[32m${typeSs}\e[0m<--..."
       # fi
       # else
       # echo '-----------------------------------------------'
-      # echo '| pacmanSay: -->Thank you for using pacup<--  |'
+      # echo '| pacmanSay: -->Thank you for using pAcup<--  |'
       # echo '-----------------------------------------------'
       #    fi
       # else
@@ -9694,7 +9696,7 @@ typing \e[36m-S\e[0m to search -->\e[32m${typeSs}\e[0m<--..."
           #
           else
             echo -e " -->${typeG}<-- \e[32mNo\e[0m this package!"
-            echo -e ' ----->Thank you for using \e[32mpacup\e[0m<-----'
+            echo -e ' ----->Thank you for using \e[32mpAcup\e[0m<-----'
           fi
         else
           sudo pacman -Rscn ${typeG}
@@ -9705,7 +9707,7 @@ typing \e[36m-S\e[0m to search -->\e[32m${typeSs}\e[0m<--..."
     esac
   done
   echo '-----------------------------------------------'
-  echo -e '| \e[32mpacmanSay:\e[0m -->Thank you for using pacup<--  |'
+  echo -e '| \e[32mpacmanSay:\e[0m -->Thank you for using pAcup<--  |'
   echo '-----------------------------------------------'
 }
 
