@@ -2,5 +2,16 @@
 # bashrc
 A newer of archlinux to share the config...
 =======
-function pAcup in bashrc
-pAcup -h
+1.) function pAcup in bashrc
+```terminal
+>$pAcup -h
+```
+
+2.) function neofetch in bashrc
+
+  -- backuping your ~/.config/neofetch
+
+  -- downloadinf config fold and copying neofetch to ~/.config/
+```terminal
+>$neofetch
+```
