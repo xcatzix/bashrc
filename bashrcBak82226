@@ -60,10 +60,31 @@ fi
 #   PS1='${debian_chroot:+($debian_chroot)} |\u@\h:<>\w<>\$\n |<^_^> '
 # fi
 # unset color_prompt force_color_prompt
+
+#  --------PS1 on [konsole] Start----------
+# capsl=$(grep 'giqorg' /etc/passwd | awk -F: '{ print $5 }')
+# if [ "${capsl}" != 0 ]; then
+# if [ "$color_prompt" = yes ]; then
+# PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\][\u@\h:]\[\033[00m\]\[\033[01;30m\]<\d>\w<\A>\$\[\033[00m\]\n
+#    \[\033[01;30m\]|<\[\033[00m\]\[\033[01;31m\]☪\[\033[00m\] \[\033[01;30m\]>\[\033[00m\]'
+# else
+# PS1='${debian_chroot:+($debian_chroot)} |\u@\h:<>\w<>\$\n |<^_^>'
+# fi
+# else
+# if [ "$color_prompt" = yes ]; then
+# PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\][\u@\h:]\[\033[00m\]\[\033[01;30m\]<\d>\w<\A>\$\[\033[00m\]\n
+#  \[\033[01;30m\]|<\[\033[00m\]\[\033[01;31m\]⚙\[\033[00m\] \[\033[01;30m\]>\[\033[00m\]'
+# else
+# PS1='${debian_chroot:+($debian_chroot)} |\u@\h:<>\w<>\$\n |<^_^>'
+# fi
+# fi
+# ---------PS1 on [konsole] End---------------
+
+# ------PS1 on [foot] Start-----------
 capsl=$(grep 'giqorg' /etc/passwd | awk -F: '{ print $5 }')
 if [ "${capsl}" != 0 ]; then
   if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\][\u@\h:]\[\033[00m\]\[\033[01;30m\]<\d>\w<\A>\$\[\033[00m\]\n\[\033[01;30m\]|<\[\033[00m\]\[\033[01;31m\]☪\[\033[00m\] \[\033[01;30m\]>\[\033[00m\]'
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;34m\][\u@\h:]\[\033[00m\]\[\033[01;33m\]<\d>\w<\A>\$\[\033[00m\]\n\[\033[01;33m\]|<\[\033[00m\]\[\033[01;32m\]☪\[\033[00m\] \[\033[01;33m\]>\[\033[00m\]'
   else
     PS1='${debian_chroot:+($debian_chroot)} |\u@\h:<>\w<>\$\n |<^_^>'
   fi
@@ -74,6 +95,8 @@ else
     PS1='${debian_chroot:+($debian_chroot)} |\u@\h:<>\w<>\$\n |<^_^>'
   fi
 fi
+# ----------PS1 on [foot] End------------
+
 # If this is an xterm set the title to user@host:dir
 # case "$TERM" in
 # xterm* | rxvt*)
@@ -125,9 +148,9 @@ if ! shopt -oq posix; then
 fi
 
 # golang proxy...
-export GO111MODULE=on
-export GOSUMDB=sum.golang.google.cn
-export GOPROXY=https://goproxy.cn,direct
+# export GO111MODULE=on
+# export GOSUMDB=sum.golang.google.cn
+# export GOPROXY=https://goproxy.cn,direct
 # export GOPATH='/home/giqorg/Public/go'
 # export GOMODCACHE='/home/giqorg/Public/go/pkg/mod'
 
@@ -153,10 +176,13 @@ export GOPROXY=https://goproxy.cn,direct
 # (Advanced): Change this to the name of your remote repo if you
 # cloned bash-it with a remote other than origin such as `bash-it`.
 #BASH_IT_REMOTE='bash-it'
+
 # Don't check mail when opening terminal.
-unset MAILCHECK
+# unset MAILCHECK
+
 # Change this to your console based IRC client of choice.
-export IRC_CLIENT='irssi'
+# export IRC_CLIENT='irssi'
+
 # Set this to the location of your work or project folders
 #BASH_IT_PROJECT_PATHS="${hOmE}/Projects:/Volumes/work/src"
 # Load Bash It
@@ -248,7 +274,8 @@ function mEmtMpfs() {
     local checkFtpmotd
     checkFtpmotd=$(sha512sum "${TeMfold}"/ftpmotd)
     modiCheKfTpmOtd=${checkFtpmotd%% *}
-    local sumFtpmotd='96888591ccd300818cb8a08eb41673562aaf77efb584949fe140e6a0be80bb4032a1849ca3b37748e3ce5d95549554238a8e24e9602264147e55a3f53055cdd5'
+    local
+    sumFtpmotd='509d6f3a6ea547a4f90cd3ae78229cd57c5733424f6fab27f15b56a598b0e4267b6025aa7319382947ff559aa98befe92d87aad5fd43d8821ef5713bfe640982'
     if [[ "${modiCheKfTpmOtd}" != "${sumFtpmotd}" ]]; then
       nmcli radio wifi off 2>/dev/null
       echo -e 'WatchdogSay:The computer is very \e[32msafe\e[0m!>_<'
@@ -8552,31 +8579,47 @@ function fIndavahi() {
     echo '--------------Avahi stArt-------------'
     find / -name avahi
     echo '--------------Avahi eNd---------------'
-    echo "The avahi singing: $(date --rfc-3339=seconds)"
+    echo "The avahi saying:  ===$(date --rfc-3339=seconds)==="
   } >"${sEcpAth}" 2>/dev/null
 }
 
 # remove avahi ssh...
 function rMavahi() {
   local sEcpAth="${HOME}"/.cache/.sEcUriTypoLicY.log
-  while read -r tempLine; do
-    if echo "${tempLine}" | grep -E '/'; then
-      sudo rm -rf "${tempLine}" && notifyOn=1
-    fi
-  done <"${sEcpAth}"
-  [[ "${notifyOn}" == 1 ]] && notify-send "The avahi singing: 这个房子我准备装修装修来住... "
-  notify-send "$(grep 'singing:' ${sEcpAth})"
+  grep '/' "${sEcpAth}" && notify-send "The avahi singing: 这个房子我准备装修装修来住..."
+  if grep '/' "${sEcpAth}"; then
+    while read -r tempLine; do
+      if echo "${tempLine}" | grep '/'; then
+        sudo rm -rf "${tempLine}"
+      fi
+    done <"${sEcpAth}"
+  fi
+  notify-send "$(grep 'saying' ${sEcpAth})"
 }
 
 function gEtweAther() {
   # local shareWeather=/tmp/sHareWeather.db
   # if [[ -n ${shareWeather} ]]; then
   # sleep 2
-  curl -so /tmp/sHareWeather.db wttr.in/33.728045+118.542936 >/dev/null 2>&1
+
+  # locname is location(Ex. London) or latitude+longitude(below).
+  # Using detail:https://github.com/chubin/wttr.in
+  local locname=33.728045+118.542936
+  curl -so /tmp/sHareWeather.db wttr.in/${locname} >/dev/null 2>&1
+  echo "The time seconds: $(($(date +%s) + 1800))" >>/tmp/sHareWeather.db
   echo "The weather fetching time: $(date --rfc-3339=seconds)" >>/tmp/sHareWeather.db
-  # fi
 }
 
+function neofetch() {
+  local beftime
+  beftime=$(grep 'seconds' /tmp/sHareWeather.db)
+  beftime=${beftime#*:}
+  nowtime=$(date +%s)
+  if [[ $((beftime - nowtime)) -le 0 ]]; then
+    gEtweAther
+  fi
+  /usr/bin/neofetch
+}
 # Application relation...
 function pAcup() {
   # pAthDefiNe
@@ -8835,14 +8878,12 @@ HELPER
   #                         else
   #                    sudo pacman -S "${inst}"
   #                    echo '----------->[Installing Done]<-----------'
-  #                    echo -e -n 'Typing \033[32manother\033[0m application to install or type \033[32mG\033[0m to 
-end...' | grep 'install'
+  #                    echo -e -n 'Typing \033[32manother\033[0m application to install or type \033[32mG\033[0m to end...' | grep 'install'
   #                    echo -n ' -->Typing another application or "G" -->' && read -r typeG
   #                    while [[ "${typeG}" != G ]]; do
   #                        sudo pacman -S "${typeG}"
   #                        echo '------------>[Installing Done]<--------------'
-  #                       echo -e -n 'Typing \033[32manother\033[0m application to install or type \033[36mG\033[0m to 
-end...' | grep 'install'
+  #                       echo -e -n 'Typing \033[32manother\033[0m application to install or type \033[36mG\033[0m to end...' | grep 'install'
   #                       echo -n ' -->Typing another application or G -->' && read -r typeG
   #                    done
   #                    echo -n 'Typing K to umount boot and efi...' | grep 'K'
@@ -10355,7 +10396,7 @@ function fInDpAthaT() {
     find "${hOmE}"/Music -type f -mtime -3
     sudo find "${hOmE}"/Pictures -type f -mtime -3
     find "${hOmE}"/Public -type f -mtime -3
-    find "${hOmE}"/Videos -type f -mtime -3
+    sudo find "${hOmE}"/Videos -type f -mtime -3
     find "${hOmE}"/.config -type f -mtime -3
     # sudo find "${hOmE}"/.local -type f -mtime -3
     sudo find /etc -type f -mtime -3
@@ -10394,7 +10435,7 @@ function cOlleCtpAth() {
   # TeMfold="${hOmE}"/Templates
   # cd "${TeMfold}" || return
   # cp ./.fthcAche ./.fthcAcheBak
-  local lAstTime=2026-06-12࿇14:38:03.034278235
+  local lAstTime=2026-08-23࿇09:52:43.191241142
   if [[ "${lAstTime}" == 'SaFeGuArd' && -z "${nOtnOtiCing}" ]]; then
     local pAthsEarchfiRstruN=OhMyGod
     local nEednOtiCing=YeSiR
@@ -10409,6 +10450,7 @@ function cOlleCtpAth() {
         's/.*pAthsEarchfiRstruN=\([0-9].*[0-9]\) */\1/')
       sed -i "s/^ *# *cheKTime=waITrecording *$/    # lOcal ChecKTime=${fOrcheKTime}/" "${hOmE}"/.bashrc
       sudo sed -i "s/^ *# *chEcKTiMe=waITrecording *$/# locAl CheKTime=${fOrcheKTime}/" /etc/ftpusers
+      sudo sed -i "s/^ *# *chEcKTiMe=waITrecording *$/# locAl CheKTime=${fOrcheKTime}/" /etc/ftpmotd
       sed -i 's/[${]nOtnOtiCing[}$]/{nEednOtiCing}/' "${hOmE}"/.bashrc
     fi
     # sed -i "s/^ *local lAstTime=SaFeGuArd *$/  local lAstTime=${stArtTime}/" "${hOmE}"/.bashrc
@@ -10451,6 +10493,7 @@ function cOlleCtpAth() {
     # sed -i 's/^\/.*\.\(jpg\|jpeg\|png\|gif\|bmp\|webp\)/png & 1-1-1-1-1-1-1-1-1-1-1/' "${TeMfold}"/.fthcAche
     # sed -i 's/^\/.*\.\(mp3\|mp4\|AVI\|FLV\|WAV\|OGG\)/music & 1-1-1-1-1-1-1-1-1-1-1/' "${TeMfold}"/.fthcAche
   fi
+  echo "---> Modifying the local lAstTime...<--"
   sed -i "s/^ *local lAstTime=.* *$/  local lAstTime=${stArtTime}/" "${hOmE}"/.bashrc
   if [[ "${nEednOtiCing}" == 'YeSiR' ]]; then
     echo -e "---->GodSayd: ${GodsAy}<----"
@@ -10920,5 +10963,17 @@ HELPER
 # wRitenPaTHtofilE
 # }
 
+# krunner启动快捷方式：alt+space
+
+# . "$HOME/.turso/env"
+
+# Starship 初始化
+# eval "$(starship init bash)"
+
+# ble.sh 初始化（根据安装方式二选一）
+# [[ $- == *i* ]] && source ~/.local/share/blesh/ble.sh --attach=none  # 源码安装
+# [[ $- == *i* ]] && source /usr/share/blesh/ble.sh --attach=none # AUR 安装
+# ble.sh 附加（必须放在文件末尾）
+# [[ ${BLE_VERSION-} ]] && ble-attach
 
 # krunner启动快捷方式：alt+space
