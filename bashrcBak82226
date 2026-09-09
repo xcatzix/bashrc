@@ -1,3 +1,4 @@
+  echo "--------${beftime}-------2"
 # ~/.bashrc: executed by bash(1) for non-login shells.ෝෝ
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -8605,13 +8606,16 @@ function gEtweAther() {
   # locname is location(Ex. London) or latitude+longitude(below).
   # Using detail:https://github.com/chubin/wttr.in
   local locname=33.728045+118.542936
+  rm -rf /tmp/sHareWeather.db
   curl -so /tmp/sHareWeather.db wttr.in/${locname} >/dev/null 2>&1
-  echo "The time seconds: $(($(date +%s) + 1800))" >>/tmp/sHareWeather.db
-  echo "The weather fetching time: $(date --rfc-3339=seconds)" >>/tmp/sHareWeather.db
+  {
+  echo "The time seconds: $(($(date +%s) + 1800))"
+  echo "The weather fetching time: $(date --rfc-3339=seconds)"
+  } >>/tmp/sHareWeather.db
 }
 
 function neofetch() {
-  local beftime
+  local beftime nowtime
   beftime=$(grep 'seconds' /tmp/sHareWeather.db)
   beftime=${beftime#*:}
   nowtime=$(date +%s)
