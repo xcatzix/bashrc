@@ -1,4 +1,3 @@
-  echo "--------${beftime}-------2"
 # ~/.bashrc: executed by bash(1) for non-login shells.ෝෝ
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -8369,8 +8368,8 @@ function sEcUriTypoLicY() {
     # --input and output related--------------------------------------------------------
     # input chain policy
     sudo iptables -A INPUT -i lo -j ACCEPT
+    # sudo iptables -t filter -A INPUT -p tcp -s 192.168.10.178 --dport 8080 -j ACCEPT
     sudo iptables -t filter -A INPUT -p tcp --dport 80 -j ACCEPT
-    # sudo iptables -t filter -A INPUT -p tcp --dport 8080 -j ACCEPT
     sudo iptables -t filter -A INPUT -p tcp --dport 443 -j ACCEPT
     # sudo iptables -t filter -A INPUT -p tcp --dport 403 -j ACCEPT
     sudo iptables -t filter -A INPUT -p tcp --dport 21 -j ACCEPT
@@ -8580,7 +8579,7 @@ function fIndavahi() {
     echo '--------------Avahi stArt-------------'
     find / -name avahi
     echo '--------------Avahi eNd---------------'
-    echo "The avahi saying:  ===$(date --rfc-3339=seconds)==="
+    echo "The avahi saying:  =====$(date --rfc-3339=seconds)====="
   } >"${sEcpAth}" 2>/dev/null
 }
 
@@ -8609,8 +8608,8 @@ function gEtweAther() {
   rm -rf /tmp/sHareWeather.db
   curl -so /tmp/sHareWeather.db wttr.in/${locname} >/dev/null 2>&1
   {
-  echo "The time seconds: $(($(date +%s) + 1800))"
-  echo "The weather fetching time: $(date --rfc-3339=seconds)"
+    echo "The time seconds: $(($(date +%s) + 1800))"
+    echo "The weather fetching time: $(date --rfc-3339=seconds)"
   } >>/tmp/sHareWeather.db
 }
 
