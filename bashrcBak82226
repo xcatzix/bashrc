@@ -10981,3 +10981,6 @@ HELPER
 # [[ ${BLE_VERSION-} ]] && ble-attach
 
 # krunner启动快捷方式：alt+space
+
+# 终端命令查看...
+# >$stty --help / stty -a
