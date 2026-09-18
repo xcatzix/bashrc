@@ -8605,21 +8605,25 @@ function gEtweAther() {
   # locname is location(Ex. London) or latitude+longitude(below).
   # Using detail:https://github.com/chubin/wttr.in
   local locname=33.728045+118.542936
-  rm -rf /tmp/sHareWeather.db
-  curl -so /tmp/sHareWeather.db wttr.in/${locname} >/dev/null 2>&1
+  # rm -rf /tmp/sHareWeather.db
   {
+    curl -s wttr.in/${locname}
     echo "The time seconds: $(($(date +%s) + 1800))"
     echo "The weather fetching time: $(date --rfc-3339=seconds)"
-  } >>/tmp/sHareWeather.db
+  } >/tmp/sHareWeather.db 2>/dev/null
 }
 
 function neofetch() {
   local beftime nowtime
-  beftime=$(grep 'seconds' /tmp/sHareWeather.db)
-  beftime=${beftime#*:}
-  nowtime=$(date +%s)
-  if [[ $((beftime - nowtime)) -le 0 ]]; then
+  beftime=$(grep 'seconds' /tmp/sHareWeather.db 2>/dev/null)
+  if [[ -z "${beftime}" ]]; then
     gEtweAther
+  else
+    beftime=${beftime#*:}
+    nowtime=$(date +%s)
+    if [[ $((beftime - nowtime)) -le 0 ]]; then
+      gEtweAther
+    fi
   fi
   /usr/bin/neofetch
 }
@@ -10983,3 +10987,5 @@ HELPER
 
 # 终端命令查看...
 # >$stty --help / stty -a
+
+# TENCENT_NEWS_APIKEY aichat ...
