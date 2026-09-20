@@ -8218,8 +8218,14 @@ function sEcUriTypoLicY() {
     fi
   done
   (mEmtMpfs)
-  shareDB=/dev/shm/shAreDaTa
+  local dictDB="${HOME}"/Templates/stardict.db
+  local shareDB=/dev/shm/shAreDaTa
   # SecUriClose=$(grep 'c' "${shareDB}" 2>/dev/null)
+  if [[ ! -f "${dictDB}" ]]; then
+    echo ' -------------------------------------------'
+    echo -e 'GodSaying: the world is very \e[32msafe\e[0m...'
+    return 1
+  fi
   if [[ -f "${shareDB}" ]]; then
     echo ' -------------------------------------------'
     echo -e 'WatchdogSayd:ftpmotds \e[32msha512sum\e[0m had changed...'
@@ -8545,7 +8551,7 @@ function sEcUriTypoLicY() {
       local ftpActiVe
       ftpActiVe=$(systemctl status bftpd | sed -n 's/Active: *\([^\(]*\).*/\1/p' | sed 's/ *//g')
       if [[ "${ftpActiVe}" == 'active' ]]; then
-        echo -e '---->bftpd \e[32mhas\e[0m started itself with system started<----'
+        echo -e '---->bftpd \e[32mhas\e[0m started itself with system startup<----'
         echo -e ' ----->bftpd \e[32mstatus is\e[0m wRonG!!!<-----'
         echo ' --------------------------------------------'
       else
@@ -10987,5 +10993,3 @@ HELPER
 
 # 终端命令查看...
 # >$stty --help / stty -a
-
-# TENCENT_NEWS_APIKEY aichat ...
