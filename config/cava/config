@@ -1,0 +1,152 @@
+## CAVA 圆形阴影可视化配置
+## 适用于 Arch Linux 桌面
+## 使用方法：将此文件放到 ~/.config/cava/config，着色器放到 ~/.config/cava/shaders/
+
+[general]
+# 帧率：60fps 流畅，可根据性能调整为 30
+framerate = 30
+
+# 自动灵敏度：自动调整增益防止爆音
+autosens = 1
+
+# 基础灵敏度（100 = 正常，调高更敏感）
+sensitivity = 150
+
+# 柱状条数量：圆形可视化建议 64-128 条，越多越平滑
+# sdl_glsl着色器，bars如下：
+# 终端bars如下：
+# bars=51
+bars = 570
+
+# ====== 柱条最大高度控制 ======
+# 方式一（推荐）：修改着色器中的 BAR_MAX_LEN 参数（见 shaders/circle_shadow.frag）
+#   该值范围 0.05~0.30，默认 0.18，值越大柱条越长
+#   例如改为 0.10 = 短柱条，0.25 = 长柱条
+#
+# 方式二：通过 sdl_glsl_gain 控制振幅增益（见下方 output 段）
+#   100 = 原始，>100 放大柱高，<100 缩小柱高
+#
+# 方式三：通过 sensitivity 控制整体灵敏度（见下方）
+#   增大 sensitivity 让柱条更容易达到最大高度
+#
+# 终端模式下的 max_height（sdl_glsl 模式下主要由着色器控制）
+;max_height = 100
+
+# SDL 模式下的柱宽和间距（像素）
+bar_width = 0
+bar_spacing = 1
+
+# 频率范围（Hz）：低音 50Hz 到高音 15kHz
+lower_cutoff_freq = 40
+higher_cutoff_freq = 15000
+
+# 无输入自动休眠（秒），0 = 关闭
+sleep_timer = 0
+
+[input]
+# Arch Linux 默认使用 PipeWire 或 PulseAudio
+# 如果你用 PipeWire（Arch 默认）：
+method = pipewire
+source = auto
+
+# 如果你用 PulseAudio，把上面两行注释掉，启用下面两行：
+# method = pulse
+# source = auto
+
+# 如果你用 ALSA（需要 loopback）：
+# Need:Linux kernel module "snd_aloop"
+# >$sudo modprobe snd_aloop
+# method = alsa
+# source = hw:Loopback,1
+
+# MPD 用户可以用 FIFO(似乎卡机，不相应，不好用)：
+# method = fifo
+# source = /tmp/mpd.fifo
+
+[output]
+# ====== 使用 SDL + GLSL 着色器渲染 ======
+method = sdl_glsl
+# method = noncurses
+
+# 窗口尺寸（正方形适合圆形可视化）
+sdl_width = 600
+sdl_height = 600
+
+# GLSL 增益控制：100 = 原始，>100 = 放大
+sdl_glsl_gain = 150
+
+# 窗口位置（-1, -1 = 居中）
+sdl_x = -1
+sdl_y = -1
+
+# 全屏模式：0 = 窗口，1 = 全屏
+sdl_full_screen = 1
+
+# ====== 着色器文件 ======
+# 顶点着色器（必须）
+vertex_shader = pass_through.vert
+
+# 片段着色器：我们自定义的圆形阴影着色器
+fragment_shader = 1_circle_shadow.frag
+# fragment_shader = winamp_line_style_spectrum.frag
+# fragment_shader = circle_shadow_rotate.frag
+# fragment_shader = iNdetail_circle_shadow_annotated.frag
+
+# 持续渲染：开启让脉冲动画在静音时也能播放
+continuous_rendering = 1
+
+# 声道：mono 单声道更适合圆形
+channels = mono
+mono_option = average
+
+# 不显示频率标签
+xaxis = none
+
+# 不显示空闲条头
+show_idle_bar_heads = 0
+
+# 波形模式关闭（使用频谱模式）
+waveform = 0
+
+[color]
+# ====== 背景色：纯黑透明 ======
+# 注意：SDL 窗口真正的透明度取决于窗口管理器
+# 在 ~/.config/cava/config 中用 #00000000 或深色
+background = '#454d4d'
+
+# 前景色（当不使用渐变时的默认颜色）
+# foreground = '#6ef7be'
+
+# ====== 渐变颜色：从内圈（低音）到外圈（高音） ======
+gradient = 1
+gradient_count = 8
+# 内圈：深紫/蓝紫色（低音）
+gradient_color_1 = '#ff0b0f'
+gradient_color_2 = '#ffd502'
+gradient_color_3 = '#bff7c1'
+gradient_color_4 = '#ff1e00'
+gradient_color_5 = '#b1f70e'
+gradient_color_6 = '#2af8fc'
+gradient_color_7 = '#9a24fa'
+gradient_color_8 = '#e521ff'
+
+# 外圈最亮处：青色/白色高光由着色器自动添加
+
+[smoothing]
+# Monstercat 风格平滑：让柱状条更流畅
+monstercat = 1
+waves = 1
+
+# 降噪：0 = 最灵敏，100 = 最平滑
+noise_reduction = 10
+
+[eq]
+# 均衡器：增强低音，适度中频，柔和高音
+1 = 1.4
+2 = 1.3
+3 = 1.1
+4 = 1.0
+5 = 0.9
+6 = 0.8
+7 = 0.7
+8 = 0.6

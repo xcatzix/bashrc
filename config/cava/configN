@@ -1,0 +1,134 @@
+## CAVA 圆形阴影可视化配置
+## 适用于 Arch Linux 桌面
+## 使用方法：将此文件放到 ~/.config/cava/config，着色器放到 ~/.config/cava/shaders/
+
+[general]
+# 帧率：60fps 流畅，可根据性能调整为 30
+framerate = 60
+
+# 窗口尺寸（正方形适合圆形可视化）
+sdl_width = 100
+sdl_height = 100
+
+# 柱状条数量：圆形可视化建议 64-128 条，越多越平滑
+bars = 40
+
+# SDL 模式下的柱宽和间距（像素）
+bar_width = 2
+bar_spacing = 0
+
+# 自动灵敏度：自动调整增益防止爆音
+autosens = 1
+
+# 基础灵敏度（100 = 正常，调高更敏感）
+sensitivity = 100
+
+# Gravity (0-200) - controls how fast bars fall
+# 100 = normal gravity, 150 = faster fall, 50 = slower fall
+gravity = 200
+
+
+# 频率范围（Hz）：低音 50Hz 到高音 15kHz
+lower_cutoff_freq = 40
+higher_cutoff_freq = 15000
+
+# 无输入自动休眠（秒），0 = 关闭
+sleep_timer = 0
+
+[input]
+# Arch Linux 默认使用 PipeWire 或 PulseAudio
+# 如果你用 PipeWire（Arch 默认）：
+# method = pipewire
+# source = auto
+
+# 如果你用 PulseAudio，把上面两行注释掉，启用下面两行：
+method = pulse
+source = auto
+
+# 如果你用 ALSA（需要 loopback）：
+# method = alsa
+# source = hw:Loopback,1
+
+# MPD 用户可以用 FIFO：
+# method = fifo
+# source = /tmp/mpd.fifo
+
+[output]
+# ====== 使用 SDL + GLSL 着色器渲染 ======
+method = sdl_glsl
+
+
+# 窗口位置（-1, -1 = 居中）
+sdl_x = -1
+sdl_y = -1
+
+# 全屏模式：0 = 窗口，1 = 全屏
+sdl_full_screen = 0
+
+# ====== 着色器文件 ======
+# 顶点着色器（必须）
+vertex_shader = pass_through.vert
+
+# 片段着色器：我们自定义的圆形阴影着色器
+fragment_shader = circle_shadow.frag
+# fragment_shader = circle_shadow_rotate.frag
+
+# 持续渲染：开启让脉冲动画在静音时也能播放
+continuous_rendering = 1
+
+# GLSL 增益控制：100 = 原始，>100 = 放大
+sdl_glsl_gain = 110
+
+# 声道：mono 单声道更适合圆形
+channels = mono
+mono_option = average
+
+# 不显示频率标签
+xaxis = none
+
+# 不显示空闲条头
+show_idle_bar_heads = 0
+
+# 波形模式关闭（使用频谱模式）
+waveform = 1
+
+[color]
+# ====== 背景色：纯黑透明 ======
+# 注意：SDL 窗口真正的透明度取决于窗口管理器
+# 在 ~/.config/cava/config 中用 #00000000 或深色
+background = '#0a0a12'
+
+# 前景色（当不使用渐变时的默认颜色）
+foreground = '#4fc3f7'
+
+# ====== 渐变颜色：从内圈（低音）到外圈（高音） ======
+gradient = 1
+gradient_count = 6
+# 内圈：深紫/蓝紫色（低音）
+gradient_color_1 = '#2d1b69'
+gradient_color_2 = '#5b21b6'
+gradient_color_3 = '#7c3aed'
+gradient_color_4 = '#2563eb'
+gradient_color_5 = '#06b6d4'
+gradient_color_6 = '#22d3ee'
+# 外圈最亮处：青色/白色高光由着色器自动添加
+
+[smoothing]
+# Monstercat 风格平滑：让柱状条更流畅
+monstercat = 1
+waves = 1
+
+# 降噪：0 = 最灵敏，100 = 最平滑
+noise_reduction = 60
+
+
+[eq]
+# 均衡器：增强低音，适度中频，柔和高音
+1 = 1.4
+2 = 1.3
+3 = 1.1
+4 = 1.0
+5 = 0.9
+6 = 0.8
+7 = 0.7
+8 = 0.6
