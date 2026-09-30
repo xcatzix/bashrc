@@ -26,3 +26,5 @@
     >sudo cp -r ./* /usr/local/
     >sudo ln -s /usr/local/bin/cava /usr/bin/
     ```
+5.) huashijie.zip及huashijie_final.png为手机app<画世界>一些使用时的图片及原文件,可以看一看,也  
+    许有用.  
